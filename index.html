@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Queen Praniti 👑</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+    --blush:#fdecef;
+    --lavender:#f2ecff;
+    --wine:#6b1f3a;
+}
+
+/* BASIC RESET */
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(120deg,var(--blush),var(--lavender));
+    color:#3a3a3a;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
+}
+
+/* START SCREEN */
+#startScreen{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,#f9d6dc,#e8dbff);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    text-align:center;
+    animation:fadeIn 1s ease;
+}
+#startScreen h1{
+    font-family:'Great Vibes',cursive;
+    font-size:3.8em;
+    color:var(--wine);
+}
+#startScreen button{
+    margin-top:25px;
+    padding:14px 36px;
+    border:none;
+    border-radius:30px;
+    background:var(--wine);
+    color:white;
+    font-size:1.05em;
+    cursor:pointer;
+}
+
+/* NAVIGATION */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(10px);
+    padding:12px;
+    text-align:center;
+    z-index:1000;
+    transition: all 0.3s ease;
+}
+nav a{
+    margin:0 16px;
+    text-decoration:none;
+    color:var(--wine);
+    font-weight:500;
+    font-size:1.1em;
+}
+
+/* SECTIONS */
+section{
+    min-height:100vh;
+    padding:40px 25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    scroll-margin-top:80px;
+    opacity:0;
+    transform:translateY(20px);
+    transition:all 1s ease;
+}
+section.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.section-title{
+    font-family:'Great Vibes',cursive;
+    font-size:4em;
+    color:var(--wine);
+    margin-bottom:20px;
+    text-shadow:0 0 8px rgba(255,105,180,0.4);
+}
+
+/* CONFETTI */
+.confetti{
+    position:fixed;
+    width:10px;
+    height:10px;
+    top:-10px;
+    animation:fall 3.5s linear forwards;
+    border-radius:50%;
+}
+@keyframes fall{
+    to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* LOVE CAROUSEL */
+.love-box{
+    max-width:900px;
+    background:rgba(255,255,255,0.7);
+    padding:45px 35px;
+    border-radius:30px;
+    box-shadow:0 20px 40px rgba(0,0,0,.08);
+    margin-bottom:40px;
+}
+#loveCarousel{
+    font-size:1.6em;
+    color:#6b1f3a;
+    line-height:2;
+    font-weight:500;
+    opacity:0;
+    transition:opacity 0.6s ease;
+    text-shadow:0 0 8px #ff69b4,0 0 16px #ff1493;
+}
+
+/* JUST LOVE YOU BLOCK */
+#loveBlock{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    max-width:1000px;
+    gap:15px;
+    margin-top:30px;
+}
+.love-item{
+    background:rgba(255,255,255,0.75);
+    padding:12px 18px;
+    border-radius:15px;
+    font-size:1.2em;
+    color:#6b1f3a;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    transition: all 0.3s ease;
+}
+.love-item:hover{
+    transform:scale(1.1);
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+}
+
+/* BUTTON */
+.action-btn{
+    margin-top:30px;
+    padding:15px 34px;
+    border:none;
+    border-radius:30px;
+    background:var(--wine);
+    color:white;
+    font-size:1.05em;
+    cursor:pointer;
+}
+
+/* LETTER MODAL */
+#letter{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+#letterContent{
+    background:white;
+    padding:36px;
+    max-width:600px;
+    border-radius:24px;
+    text-align:left;
+    line-height:1.6;
+    font-size:1.1em;
+}
+#letterContent h2{
+    font-family:'Great Vibes',cursive;
+    font-size:2.9em;
+    color:var(--wine);
+    text-align:center;
+}
+
+/* FLOATING HEARTS */
+.heart{
+    position:fixed;
+    width:20px;
+    height:20px;
+    background:red;
+    transform:rotate(45deg);
+    left:50%;
+    top:50%;
+    pointer-events:none;
+    opacity:0.8;
+    animation:floatHeart 4s linear forwards;
+}
+.heart:before,.heart:after{
+    content:"";
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:red;
+    border-radius:50%;
+}
+.heart:before{top:-10px; left:0;}
+.heart:after{top:0; left:-10px;}
+@keyframes floatHeart{
+    0%{transform:translate(0,0) rotate(45deg);opacity:1;}
+    100%{transform:translate(calc(var(--x)*1px),-300px) rotate(45deg);opacity:0;}
+}
+
+/* ANIMATION KEYFRAMES */
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+</style>
+</head>
+<body>
+
+<!-- START SCREEN -->
+<div id="startScreen">
+    <h1>For My Queen 👑</h1>
+    <p>Tap gently… love awaits 🤍</p>
+    <button onclick="startSurprise()">Begin</button>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+    <source src="Saude_Bazi_Song_Anupam_Amod_Bollywood_Song_Candy_Lyrics(128k).mp3" type="audio/mpeg">
+</audio>
+
+<!-- NAV -->
+<nav>
+    <a href="#home">Home</a>
+    <a href="#loveWorld">Love</a>
+    <a href="#justLove">JUST LOVE YOU</a>
+    <a href="#final">Message</a>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="visible">
+    <h1 class="section-title" id="revealText">🎂 3 🎂</h1>
+    <p style="max-width:650px;color:#6b1f3a;font-size:1.2em;">
+        Grace, kindness, strength — today and always,  
+        you are celebrated <b>Queen Praniti 👑</b>
+    </p>
+</section>
+
+<!-- LOVE WORLD -->
+<section id="loveWorld">
+    <h1 class="section-title">Love From Every Language 🌍💖</h1>
+    <div class="love-box">
+        <div id="loveCarousel"></div>
+    </div>
+</section>
+
+<!-- JUST LOVE YOU -->
+<section id="justLove">
+    <h1 class="section-title">JUST LOVE YOU 💖</h1>
+    <div id="loveBlock"></div>
+</section>
+
+<!-- FINAL MESSAGE -->
+<section id="final">
+    <h1 class="section-title">Forever, My Queen 👑</h1>
+    <p style="max-width:650px;color:#6b1f3a;font-size:1.2em;">
+        Across cultures, across languages, one feeling remains the same —  
+        <b>I love you, endlessly 🤍</b>
+    </p>
+    <button class="action-btn" onclick="openLetter()">One Last Letter 💌</button>
+</section>
+
+<!-- LETTER -->
+<div id="letter">
+    <div id="letterContent">
+        <h2>My Queen 🤍</h2>
+        <p>Rani, Happy birthday 🎉🎂<br>
+        tuj bhari ahe na ki ek divsadhi NEW YEAR che wishes bhetet ani dusrya divshi BIRTHDAY che 🥳<br><br>
+        My QUEEN..., I will always be there for you 💖<br>
+        just to love you ❤️<br>
+        just to admire you 😍<br>
+        just to make you smile 😊<br>
+        just to do all the things you deserve 🌟<br><br>
+        be ONLY MINE MAM 💕<br>
+        HAPPY BIRTHDAY DEAR 🎂🎉<br>
+        LOVE YOU 💖💋<br><br>
+        YOUR MAN 👑</p>
+        <button class="action-btn" onclick="closeLetter()">Close 🤍</button>
+    </div>
+</div>
+
+<script>
+// START SCREEN
+function startSurprise(){
+    document.getElementById("startScreen").style.display="none";
+    document.getElementById("music").play().catch(()=>{});
+    countdown();
+}
+
+// COUNTDOWN
+let count=3;
+function countdown(){
+    const t=document.getElementById("revealText");
+    if(count>0){
+        t.innerText="🎂 "+count+" 🎂";
+        count--;
+        setTimeout(countdown,1000);
+    }else{
+        t.innerText="✨ Happy Birthday My Queen ✨";
+        launchConfetti();
+        revealSections();
+    }
+}
+
+// CONFETTI
+function launchConfetti(){
+    for(let i=0;i<80;i++){
+        let c=document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"vw";
+        c.style.background=`hsl(${Math.random()*360},70%,80%)`;
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),3500);
+    }
+}
+
+// SCROLL REVEAL SECTIONS
+function revealSections(){
+    const sections=document.querySelectorAll("section");
+    sections.forEach((s,idx)=>{
+        setTimeout(()=>{s.classList.add("visible");}, idx*400);
+    });
+}
+
+// LOVE CAROUSEL
+const loveLines=[
+"तुमसे बहुत प्यार करता हूँ, रानी","मला तुझ्यावर खूप प्रेम आहे, राणी",
+"আমি তোমাকে খুব ভালোবাসি, রানী","నేను నిన్ను చాలా ప్రేమిస్తున్నాను, రాణి",
+"நான் உன்னை மிகவும் காதலிக்கிறேன், ராணி",
+"I love you soo much, queen","Te amo muchísimo, reina","Je t’aime énormément, reine",
+"Ich liebe dich so sehr, Königin","Ti amo tantissimo, regina",
+"Я тебя очень люблю, королева","Σ’ αγαπώ πάρα πολύ, βασίλισσα","Jag älskar dig så mycket, drottning",
+"Rakastan sinua todella paljon, kuningatar","愛してるよ、女王","정말 많이 사랑해요, 여왕님",
+"Anh yêu em rất nhiều, nữ hoàng","Aroha nui ahau ki a koe, kuīni"
+];
+let li=0;
+const carousel=document.getElementById("loveCarousel");
+function showLoveLine(){
+    carousel.style.opacity=0;
+    setTimeout(()=>{
+        carousel.innerText=loveLines[li];
+        carousel.style.opacity=1;
+        li=(li+1)%loveLines.length;
+    },300);
+}
+showLoveLine();
+setInterval(showLoveLine,3000);
+
+// JUST LOVE YOU BLOCK
+const loveBlock=document.getElementById("loveBlock");
+loveLines.forEach(line=>{
+    const div=document.createElement("div");
+    div.className="love-item";
+    div.innerText=line;
+    loveBlock.appendChild(div);
+});
+
+// LETTER MODAL
+function openLetter(){document.getElementById("letter").style.display="flex";}
+function closeLetter(){document.getElementById("letter").style.display="none";}
+
+// NAVIGATION SCROLL ANIMATION
+document.querySelectorAll('nav a').forEach(a=>{
+    a.addEventListener('click',e=>{
+        e.preventDefault();
+        const id=a.getAttribute('href').slice(1);
+        const section=document.getElementById(id);
+        window.scrollTo({top:section.offsetTop, behavior:'smooth'});
+    });
+});
+
+// FLOATING HEARTS ON SCROLL
+window.addEventListener('scroll', ()=>{
+    const heart=document.createElement('div');
+    heart.className='heart';
+    heart.style.left=Math.random()*100+'vw';
+    heart.style.top=(window.scrollY + window.innerHeight)+'px';
+    heart.style.setProperty('--x',(Math.random()-0.5)*200);
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),4000);
+});
+
+// AUTOPLAY MUSIC
+document.getElementById("music").play().catch(()=>{});
+</script>
+</body>
+</html>
